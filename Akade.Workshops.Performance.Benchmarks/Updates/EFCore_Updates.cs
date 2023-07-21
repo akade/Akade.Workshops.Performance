@@ -5,13 +5,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Akade.Workshops.Performance.Benchmarks.Updates;
 
+/// <summary>
+/// This benchmark demonstrate that you can test against different dependency versions and also reap some benefits by staying up to date.
+/// If interested, take a look at how FastJob is using the NugetPackages-String to instruct BenchmarkDotNet.
+/// 
+/// Note that the requirement to clear the db requires an IterationCleanup. This needs to be done after every Invocation, hence for
+/// our custom attribute, we need to specify an UnrollFactor of 1, so that BenchmarkDotNet will never combine multiple invocations.
+/// (When using <see cref="SimpleJobAttribute"/>, this should be automatic)
+/// </summary>
 [FastJob(RuntimeMoniker.Net70, unrollFactor: 1, maxIterationCount: 20, nugetPackages: "Microsoft.EntityFrameworkCore.Sqlite, 6.0.20", baseline: true)]
 [FastJob(RuntimeMoniker.Net70, unrollFactor: 1, maxIterationCount: 20, nugetPackages: "Microsoft.EntityFrameworkCore.Sqlite, 7.0.9")]
 public class EFCoreUpdates_Insertion
 {
     private readonly SqliteConnection _connection;
     private readonly SimpleDbContext _context = null!;
-    private readonly DataEntry[] _data = Enumerable.Range(1,2000).Select(x => new DataEntry() { Id = x, Value = x * 2 }).ToArray();
+    private readonly DataEntry[] _data = Enumerable.Range(1, 2000).Select(x => new DataEntry() { Id = x, Value = x * 2 }).ToArray();
 
 
     public EFCoreUpdates_Insertion()
@@ -19,14 +27,14 @@ public class EFCoreUpdates_Insertion
         _connection = new SqliteConnection("Data Source=:memory:");
         _connection.Open();
         _context = new SimpleDbContext(new DbContextOptionsBuilder().UseSqlite(_connection).EnableSensitiveDataLogging().Options);
-        _context.Database.EnsureCreated();
+        _ = _context.Database.EnsureCreated();
     }
 
     [Benchmark]
     public void Insertion()
     {
         _context.AddRange(_data);
-        _context.SaveChanges();
+        _ = _context.SaveChanges();
     }
 
 
@@ -41,6 +49,10 @@ public class EFCoreUpdates_Insertion
     }
 }
 
+/// <summary>
+/// This benchmark demonstrate that you can test against different dependency versions and also reap some benefits by staying up to date.
+/// If interested, take a look at how FastJob is using the NugetPackages-String to instruct BenchmarkDotNet.
+/// </summary>
 [FastJob(RuntimeMoniker.Net70, nugetPackages: "Microsoft.EntityFrameworkCore.Sqlite, 6.0.20", baseline: true)]
 [FastJob(RuntimeMoniker.Net70, nugetPackages: "Microsoft.EntityFrameworkCore.Sqlite, 7.0.9")]
 public class EFCoreUpdates_Reading
@@ -55,7 +67,7 @@ public class EFCoreUpdates_Reading
         _connection = new SqliteConnection("Data Source=:memory:");
         _connection.Open();
         _context = new SimpleDbContext(new DbContextOptionsBuilder().UseSqlite(_connection).EnableSensitiveDataLogging().Options);
-        _context.Database.EnsureCreated();
+        _ = _context.Database.EnsureCreated();
     }
 
     [Benchmark]
@@ -69,7 +81,7 @@ public class EFCoreUpdates_Reading
     public void InitWitData()
     {
         _context.AddRange(_data);
-        _context.SaveChanges();
+        _ = _context.SaveChanges();
     }
 }
 
@@ -83,8 +95,8 @@ public class SimpleDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<DataEntry>().ToTable(nameof(DataEntries)).HasKey(x => x.Id);
-        modelBuilder.Entity<DataEntry>().Property(x => x.Id).ValueGeneratedNever();
+        _ = modelBuilder.Entity<DataEntry>().ToTable(nameof(DataEntries)).HasKey(x => x.Id);
+        _ = modelBuilder.Entity<DataEntry>().Property(x => x.Id).ValueGeneratedNever();
         base.OnModelCreating(modelBuilder);
     }
 }
