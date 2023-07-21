@@ -1,23 +1,18 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Akade.Workshops.Performance.Client;
+﻿using Akade.Workshops.Performance.Client;
 using Newtonsoft.Json;
 using Spectre.Console;
 
 AnsiConsole.Write(new FigletText("Climate Data Switzerland 2022"));
 
-using HttpClient client = new()
-{
-    BaseAddress = new("https://localhost:7011/")
-};
+using HistoricalWeatherClient client = new("https://localhost:7011/");
+
 
 while (true)
 {
     try
     {
         AnsiConsole.Write("Loading available stations:");
-        Station[] stations = JsonConvert.DeserializeObject<Station[]>(await client.GetStringAsync("/HistoricalWeather/stations"))
-            ?? throw new InvalidOperationException("Failed to load stations");
-
+        Station[] stations = await client.GetStationsAsync();
 
         Station station = AnsiConsole.Prompt(new SelectionPrompt<Station>().Title("Which station do you want to load average date from?").AddChoices(stations));
 
@@ -34,8 +29,7 @@ while (true)
 
         for (DateOnly current = from; current <= to; current = current.AddDays(1))
         {
-            data.Add(JsonConvert.DeserializeObject<HistoricalData>(await client.GetStringAsync($"/HistoricalWeather/stations/{station.Code}/{current:yyyy-MM-dd}"))
-                           ?? throw new InvalidOperationException("Failed to load data"));
+            data.Add(await client.GetDataForStationAsync(station, current));
         }
 
         AnsiConsole.Write(new Table().Title($"Data for {station.Name} from {from} to {to}")
