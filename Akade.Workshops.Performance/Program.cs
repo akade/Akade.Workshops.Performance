@@ -1,7 +1,11 @@
 using Akade.Workshops.Performance.Api.Data;
 using Akade.Workshops.Performance.Api.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
 using System.Runtime.CompilerServices;
+
+using ToCsvMeterListener listener = new();
+listener.Start();
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +45,7 @@ app.Run();
 async Task EnsureDBCreatedAsync(WebApplication app)
 {
     using IServiceScope scope = app.Services.CreateScope();
-    await scope.ServiceProvider.GetRequiredService<HistoricalWeatherDataContext>().Database.EnsureDeletedAsync();
+    await scope.ServiceProvider.GetRequiredService<HistoricalWeatherDataContext>().Database.EnsureCreatedAsync();
 }
 
 async Task EnsureDBDeletedAsync(WebApplication app)

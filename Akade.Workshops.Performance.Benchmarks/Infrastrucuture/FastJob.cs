@@ -2,13 +2,14 @@
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Infrastrucuture;
 
 /// <summary>
 /// Faster benchmarks trading faster execution time for less accurate results (helps with the limited time we have in a workshop)
 /// - Relative error of 10% instead of 2
 /// - Maximum iteration & warmup iteration count of 5
 /// - Higher starting unroll factor
+/// - Allows easy benchmarking against different nuget package versions
 /// </summary>
 [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class, AllowMultiple = true)]
 public class FastJobAttribute : JobConfigBaseAttribute
@@ -52,7 +53,7 @@ public class FastJobAttribute : JobConfigBaseAttribute
             .WithBaseline(baseline)
             .WithUnrollFactor(unrollFactor);
 
-        if(unrollFactor == 1)
+        if (unrollFactor == 1)
         {
             job = job.WithInvocationCount(1);
         }

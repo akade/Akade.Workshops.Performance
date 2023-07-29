@@ -2,7 +2,7 @@
 using BenchmarkDotNet.Jobs;
 using System.Text;
 
-namespace Akade.Workshops.Performance.Benchmarks.Updates;
+namespace Akade.Workshops.Performance.Benchmarks;
 
 /// <summary>
 /// Updating to the latest and greates can help you to have some free lunch throughout the enitre stack. Run the benchmark and see for yourself.
@@ -15,7 +15,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Updates;
 /// </summary>
 [FastJob(runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
 [FastJob(runtimeMoniker: RuntimeMoniker.Net70)]
-public class NETUpdates_Linq
+public class A_NETUpdates_Linq
 {
     [GlobalSetup]
     public void Setup() => _source = Enumerable.Range(1, Length).Select(x => (double)x).ToArray();
@@ -24,20 +24,20 @@ public class NETUpdates_Linq
     public int Length { get; set; }
 
     private IEnumerable<double> _source = null!;
-    
+
 
     [Benchmark]
-    public double Average() => _source.Min();
+    public double Average() => _source.Average();
 }
 
-[FastJob(runtimeMoniker:RuntimeMoniker.Net60, baseline: true)]
-[FastJob(runtimeMoniker:RuntimeMoniker.Net70)]
-public class NETUpdates_StringOperations
+[FastJob(runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
+[FastJob(runtimeMoniker: RuntimeMoniker.Net70)]
+public class A_NETUpdates_StringOperations
 {
     private readonly string _value = "https://dot.net";
 
     [Benchmark]
-    public bool IsHttps_Ordinal() => _value.StartsWith("https://", StringComparison.Ordinal);
+    public bool IsHttps_Ordinal() => _value.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
 
     [Benchmark]
     public bool IsHttps_OrdinalIgnoreCase() => _value.StartsWith("https://", StringComparison.OrdinalIgnoreCase);

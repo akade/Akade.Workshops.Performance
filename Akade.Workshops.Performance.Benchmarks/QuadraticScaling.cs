@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System.Collections.Generic;
 
-namespace Akade.Workshops.Performance.Benchmarks.DataStructures;
+namespace Akade.Workshops.Performance.Benchmarks;
 
 /// <summary>
 /// This benchmark demonstrates how the Big-O-Notation matters and small number
@@ -21,7 +21,7 @@ public class QuadraticScaling
     [Benchmark]
     public int Count_all_numbers_who_are_also_in_the_second_list()
     {
-        return GetFirstList().Where(x => GetSecondList().Contains(x)).Count(); 
+        return GetFirstList().Where(x => GetSecondList().Contains(x)).Count();
     }
 
     private int[] GetFirstList() => Enumerable.Range(0, NumberOfElements).ToArray();

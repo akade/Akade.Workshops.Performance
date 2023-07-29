@@ -1,4 +1,6 @@
 ﻿using Akade.Workshops.Performance.Api.Data;
+using Akade.Workshops.Performance.Api.Infrastructure;
+using System.Diagnostics.Metrics;
 
 /// <summary>
 /// Data Source (only swiss stations for year 2022):
@@ -35,10 +37,9 @@ internal static class SourceDataLoader
     // 5: Q-FLAG = 1 character Quality Flag
     // 6: S-FLAG = 1 character Source Flag
     // 7: OBS-TIME = 4-character time of observation in hour-minute format(i.e. 0700 =7:00 am)
-
     private static HistoricalWeatherData? ParseWeatherData(string weatherData, IEnumerable<(string code, string name)> stations)
     {
-        string[] parts = weatherData.Split(',');
+        string[] parts = weatherData.Split(new[] { ',' });
 
         if (parts.Length < 7)
         {
@@ -114,7 +115,7 @@ internal static class SourceDataLoader
 
     internal static IEnumerable<(string code, string name)> LoadStations()
     {
-        return File.ReadLines("SourceData/StationList.csv")
+        return File.ReadLines("SourceData/CHStationList.csv")
                    .Select(x => x.Split(','))
                    .Where(x => x.Length >= 5)
                    .Select(x => (code: x[0], name: x[4]));

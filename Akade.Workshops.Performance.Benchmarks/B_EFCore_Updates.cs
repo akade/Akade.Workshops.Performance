@@ -1,9 +1,22 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿
+/* Unmerged change from project 'Akade.Workshops.Performance.Benchmarks (net6.0)'
+Before:
+using BenchmarkDotNet.Attributes;
+After:
+using Akade;
+using Akade.Workshops;
+using Akade.Workshops.Performance;
+using Akade.Workshops.Performance.Benchmarks;
+using Akade.Workshops.Performance.Benchmarks;
+using Akade.Workshops.Performance.Benchmarks.Updates;
+using BenchmarkDotNet.Attributes;
+*/
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace Akade.Workshops.Performance.Benchmarks.Updates;
+namespace Akade.Workshops.Performance.Benchmarks;
 
 /// <summary>
 /// This benchmark demonstrate that you can test against different dependency versions and also reap some benefits by staying up to date.
@@ -15,14 +28,14 @@ namespace Akade.Workshops.Performance.Benchmarks.Updates;
 /// </summary>
 [FastJob(RuntimeMoniker.Net70, unrollFactor: 1, maxIterationCount: 20, nugetPackages: "Microsoft.EntityFrameworkCore.Sqlite, 6.0.20", baseline: true)]
 [FastJob(RuntimeMoniker.Net70, unrollFactor: 1, maxIterationCount: 20, nugetPackages: "Microsoft.EntityFrameworkCore.Sqlite, 7.0.9")]
-public class EFCoreUpdates_Insertion
+public class B_EFCoreUpdates_Insertion
 {
     private readonly SqliteConnection _connection;
     private readonly SimpleDbContext _context = null!;
     private readonly DataEntry[] _data = Enumerable.Range(1, 2000).Select(x => new DataEntry() { Id = x, Value = x * 2 }).ToArray();
 
 
-    public EFCoreUpdates_Insertion()
+    public B_EFCoreUpdates_Insertion()
     {
         _connection = new SqliteConnection("Data Source=:memory:");
         _connection.Open();
@@ -55,14 +68,14 @@ public class EFCoreUpdates_Insertion
 /// </summary>
 [FastJob(RuntimeMoniker.Net70, nugetPackages: "Microsoft.EntityFrameworkCore.Sqlite, 6.0.20", baseline: true)]
 [FastJob(RuntimeMoniker.Net70, nugetPackages: "Microsoft.EntityFrameworkCore.Sqlite, 7.0.9")]
-public class EFCoreUpdates_Reading
+public class B_EFCoreUpdates_Reading
 {
     private readonly SqliteConnection _connection;
     private readonly SimpleDbContext _context = null!;
     private readonly DataEntry[] _data = Enumerable.Range(1, 2000).Select(x => new DataEntry() { Id = x, Value = x * 2 }).ToArray();
 
 
-    public EFCoreUpdates_Reading()
+    public B_EFCoreUpdates_Reading()
     {
         _connection = new SqliteConnection("Data Source=:memory:");
         _connection.Open();
