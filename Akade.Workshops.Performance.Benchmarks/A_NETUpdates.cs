@@ -5,8 +5,8 @@ using System.Text;
 namespace Akade.Workshops.Performance.Benchmarks;
 
 /// <summary>
-/// Updating to the latest and greates can help you to have some free lunch throughout the enitre stack. Run the benchmark and see for yourself.
-/// If you want to read more about what they did are the famous and excellent posts by Stephen Toub (very advanved and extremly long material):
+/// Updating to the latest and greates can help you to have some free lunch throughout the enitre stack. Run the benchmarks and see for yourself.
+/// If you want to read more about what they did, there are the famous and excellent posts by Stephen Toub (very advanved and extremly long material):
 /// https://devblogs.microsoft.com/dotnet/performance_improvements_in_net_7/
 /// https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-6/
 /// Credits to the benchmarks also go to Stephen Toub

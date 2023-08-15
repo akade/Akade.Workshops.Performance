@@ -7,11 +7,7 @@ using System.Runtime.Intrinsics;
 namespace Akade.Workshops.Performance.Benchmarks;
 
 /// <summary>
-/// Can you spezialize the count method for int collections an in a way that is source compatible (i.e. exact same code at caller location)
-/// and does not increase the code size of the exported method? 
-/// 
-/// Hints:
-/// - It is solveable without commenting out [MethodImpl(MethodImplOptions.NoInlining)]. But you also experiment with it: You will observe a huge difference. Can you explain what happens?
+/// Which one is the fastest method? Can you improve upon it?
 /// </summary>
 [FastJob]
 [DisassemblyDiagnoser]
@@ -23,7 +19,7 @@ public class Intriniscs
     [Benchmark]
     public int SumLinq()
     {
-        return array.Min();
+        return array.Sum();
     }
 
     [Benchmark]
