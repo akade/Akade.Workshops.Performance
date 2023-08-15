@@ -11,12 +11,13 @@ using Akade.Workshops.Performance.Benchmarks;
 using Akade.Workshops.Performance.Benchmarks.Updates;
 using BenchmarkDotNet.Attributes;
 */
+using Akade.Workshops.Performance.Benchmarks.Introductory;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Required;
 
 /// <summary>
 /// This benchmark demonstrate a simple mistake that completly alters the behavior of your queries. As for now, it is very slow
@@ -63,5 +64,5 @@ public class SimpleDataRepository
         _context = context;
     }
 
-    public IQueryable<DataEntry> Query() => _context.DataEntries;
+    public IEnumerable<DataEntry> Query() => _context.DataEntries;
 }

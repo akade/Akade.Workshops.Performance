@@ -16,7 +16,7 @@ using BenchmarkDotNet.Jobs;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Introductory;
 
 /// <summary>
 /// This benchmark demonstrate that you can test against different dependency versions and also reap some benefits by staying up to date.

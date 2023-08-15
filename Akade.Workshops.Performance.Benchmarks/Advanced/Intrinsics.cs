@@ -4,7 +4,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Advanced;
 
 /// <summary>
 /// Which one is the fastest method? Can you improve upon it?
@@ -13,7 +13,7 @@ namespace Akade.Workshops.Performance.Benchmarks;
 [DisassemblyDiagnoser]
 public class Intriniscs
 {
-    private readonly int[] array = Enumerable.Range(0,2560).ToArray();
+    private readonly int[] array = Enumerable.Range(0, 2560).ToArray();
 
 
     [Benchmark]
@@ -25,8 +25,8 @@ public class Intriniscs
     [Benchmark]
     public int SumFor()
     {
-        int sum = 0;    
-        for(int i = 0; i < array.Length; i++)
+        int sum = 0;
+        for (int i = 0; i < array.Length; i++)
         {
             sum += array[i];
         }
@@ -37,7 +37,7 @@ public class Intriniscs
     public int SumForeach()
     {
         int sum = 0;
-        foreach(int val in array)
+        foreach (int val in array)
         {
             sum += val;
         }
@@ -49,7 +49,7 @@ public class Intriniscs
     {
         ReadOnlySpan<int> span = array;
 
-        int lastIndexOfBlockk = array.Length - (array.Length % Vector<int>.Count);
+        int lastIndexOfBlockk = array.Length - array.Length % Vector<int>.Count;
         int pos = 0;
         Vector<int> result = Vector<int>.Zero;
         while (pos < lastIndexOfBlockk)
@@ -59,12 +59,12 @@ public class Intriniscs
         }
 
         int actualResult = 0;
-        for(int i = 0; i < Vector<int>.Count; i++)
+        for (int i = 0; i < Vector<int>.Count; i++)
         {
             actualResult += result[i];
         }
 
-        while(pos < span.Length)
+        while (pos < span.Length)
         {
             actualResult += span[pos];
             pos++;

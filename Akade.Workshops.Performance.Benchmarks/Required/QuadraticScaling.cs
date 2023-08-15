@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System.Collections.Generic;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Required;
 
 /// <summary>
 /// This benchmark demonstrates how the Big-O-Notation matters and small number

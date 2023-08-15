@@ -1,8 +1,9 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using Akade.Workshops.Performance.Benchmarks.Introductory;
+using BenchmarkDotNet.Attributes;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 
 /// <summary>
 /// (Json) Serialization is an important part of any web pipeline. Here, for serializatino Newtonsoft.Json is used, which

@@ -2,7 +2,7 @@
 using BenchmarkDotNet.Jobs;
 using System.Text;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Introductory;
 
 /// <summary>
 /// Updating to the latest and greates can help you to have some free lunch throughout the enitre stack. Run the benchmarks and see for yourself.

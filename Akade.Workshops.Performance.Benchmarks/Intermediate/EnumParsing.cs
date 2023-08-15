@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 
 /// <summary>
 /// Enums are kind of wierd in .NET (do you know why?). Can you make the parsing faster?

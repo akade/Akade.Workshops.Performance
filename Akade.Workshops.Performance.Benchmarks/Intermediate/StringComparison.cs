@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 
 /// <summary>
 /// There are different ways to compare text, culture dependent, lower case. Compare them and see which is the fastest
 /// </summary>
 [FastJob]
+[MemoryDiagnoser]
 public class StringComparisonBenchmarks
 {
 

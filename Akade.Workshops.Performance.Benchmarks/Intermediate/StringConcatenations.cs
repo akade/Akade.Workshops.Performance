@@ -2,7 +2,7 @@
 using Microsoft.Extensions.ObjectPool;
 using System.Text;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 
 [FastJob]
 [MemoryDiagnoser]

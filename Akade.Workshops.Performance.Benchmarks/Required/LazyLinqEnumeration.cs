@@ -13,7 +13,7 @@ using BenchmarkDotNet.Attributes;
 */
 using BenchmarkDotNet.Attributes;
 
-namespace Akade.Workshops.Performance.Benchmarks;
+namespace Akade.Workshops.Performance.Benchmarks.Required;
 
 /// <summary>
 /// This benchmark demonstrates how linq is evaluated "on demand".
