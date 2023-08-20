@@ -19,8 +19,8 @@ builder.Services.AddDbContext<HistoricalWeatherDataContext>(
     c => c.UseSqlite("Data Source=historicaldata.db")
           // Removing this interceptor is cheating:
           // It adds some simulated network latency (very low compared to a cloud db but reasonable for the exercise) to the in-process SqLite DB
-          // To challenge performance improvements, you can increase the default values in the .ctor (lowering is cheating)
-          .AddInterceptors(new SqliteNetworkLatencySimulatorInterceptor()));
+          // To challenge any performance improvements, you can increase the default values in the .ctor (lowering is cheating)
+          .AddInterceptors(new NetworkLatencySimulatorInterceptor()));
 
 WebApplication app = builder.Build();
 

@@ -70,6 +70,13 @@ using(TimingHelper.RecordTiming(s_orderProcessingTimeSeconds))
 }
 ```
 
+### 1.2 Observe
+
+For observing, usually tools like Prometheus and Grafana are used. For the limited amount of time,
+the workshop includes `ToCsvMeterListener`, which listens to all measurements and writes
+it to disk. 
+Monitoring can be done using (PS): `Get-Content -Path counters.csv -Wait" or "tail counters.csv`.
+
 ## 2. Profiling
 
 The following guide is for the VS Profiler (Debug > Performance Profiler, ALT + F2).

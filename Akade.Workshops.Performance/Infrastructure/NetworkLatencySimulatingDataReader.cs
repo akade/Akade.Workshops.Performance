@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Akade.Workshops.Performance.Api.Infrastructure;
 
-public sealed class RemoteLatencySimulatingDataReader : DbDataReader
+public sealed class NetworkLatencySimulatingDataReader : DbDataReader
 {
     private readonly int _delayInMS;
     private readonly double _delayProbability;
@@ -16,7 +16,7 @@ public sealed class RemoteLatencySimulatingDataReader : DbDataReader
         return Random.Shared.NextDouble() <= _delayProbability ? _delayInMS : 0;
     }
 
-    public RemoteLatencySimulatingDataReader(int delayInMS, double delayProbability, DbDataReader reader)
+    public NetworkLatencySimulatingDataReader(int delayInMS, double delayProbability, DbDataReader reader)
     {
         _delayInMS = delayInMS;
         _delayProbability = delayProbability;
