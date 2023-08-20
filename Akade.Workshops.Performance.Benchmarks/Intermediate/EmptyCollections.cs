@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 
-namespace Akade.Workshops.Performance.Benchmarks.Introductory;
+namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 
 /// <summary>
 /// This benchmarks shows a simple, [almost] always recommendable easy win.

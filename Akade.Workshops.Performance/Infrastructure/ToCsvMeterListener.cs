@@ -8,7 +8,7 @@ namespace Akade.Workshops.Performance.Api.Infrastructure;
 /// https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-collection#view-metrics-in-grafana-with-opentelemetry-and-prometheus
 /// For the workshop, it writes every measurement into "counters.csv"
 /// You can watch it while the application is running with "Get-Content -Path counters.csv -Wait" or "tail counters.csv".
-///There is also dotnet-counters that you can use: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters
+/// There is also dotnet-counters that you can use: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters
 /// </summary>
 public sealed class ToCsvMeterListener : IDisposable
 {

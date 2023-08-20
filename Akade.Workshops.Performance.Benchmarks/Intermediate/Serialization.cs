@@ -6,8 +6,8 @@ using System.Text.Json.Serialization;
 namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 
 /// <summary>
-/// (Json) Serialization is an important part of any web pipeline. Here, for serializatino Newtonsoft.Json is used, which
-/// *was* the defacto standard for a long time. Are other serializer faster?
+/// (Json) Serialization is an important part of any web pipeline. Here, for serialization Newtonsoft.Json is used, which
+/// *was* the defacto standard for a long time. Are other serializers faster?
 /// Hints
 /// - U3lzdGVtLlRleHQuSnNvbg==
 /// - WW91IGNhbiwgaW4gZmFjdCwgbWFrZSBpdCBldmVuIGEgYml0IGZhc3RlciB3aXRob3V0IHVzaW5nIGFuIGV4dGVybmFsIGxpYnJhcnkuIFRha2UgYSBsb29rIGF0IHNvdXJjZSBnZW5lcmF0aW9uIGFuZCBqc29uLg==
