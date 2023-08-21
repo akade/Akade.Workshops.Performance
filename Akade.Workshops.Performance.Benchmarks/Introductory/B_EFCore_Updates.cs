@@ -1,17 +1,4 @@
-﻿
-/* Unmerged change from project 'Akade.Workshops.Performance.Benchmarks (net6.0)'
-Before:
-using BenchmarkDotNet.Attributes;
-After:
-using Akade;
-using Akade.Workshops;
-using Akade.Workshops.Performance;
-using Akade.Workshops.Performance.Benchmarks;
-using Akade.Workshops.Performance.Benchmarks;
-using Akade.Workshops.Performance.Benchmarks.Updates;
-using BenchmarkDotNet.Attributes;
-*/
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;

@@ -4,12 +4,11 @@ using System.Text;
 
 namespace Akade.Workshops.Performance.Benchmarks.Advanced;
 
-
 /// <summary>
 /// All the following operations can be performed without any memory allocations. Can you reduce the allocations?
 /// Hints:
 /// - VGhlcmUgYXJlIG90aGVyIFBhcnNlIG92ZXJsb2Fkcywgb25lIG9mIHRoZW0gaXMgd2hhdCB5b3Ugd2FudA==
-/// - WW91IGNhbiBzbGljZSBkYXRhIHVzaW5nIFJlYWRPbmx5U3BhbjxUPiB3aXRoIFQgPSBjaGFyIGZvciBzdHJpbmdzIGNvcHlpbmcgYW55IHZhbHVlLiBTcGFucyBhcmUgcmVmIHN0cnVjdHMuIFJlYWQgdXAgb24gdGhlbSBpZiB5b3Ugd2FudCB0byBrbm93IG1vcmU=
+/// - WW91IGNhbiBzbGljZSBkYXRhIHVzaW5nIFJlYWRPbmx5U3BhbjxUPiB3aXRoIFQgPSBjaGFyIGZvciBzdHJpbmdzIGluc3RlYWQgb2YgY29weWluZyBhbnkgdmFsdWUuIFNwYW5zIGFyZSByZWYgc3RydWN0cyB0aGF0IGxpdmUgb24gdGhlIHN0YWNrLg==
 /// - VGFrZSBhIGxvb2sgYXQgU3lzdGVtLlRleHQuSnNvbj8gSXMgdGhlcmUgYW55ICpzdHJ1Y3QqIHRoYXQgcmVhZHMgVXRmOEpzb24/
 /// - SXRlcmF0ZSB0aHJvdWdoIHRoZSBqc29uIGFuZCBkaXJlY3RseSB1c2UgdGhlIHZhbHVlcyBvZiB0aGUgcHJvcGVydGllcw==
 /// </summary>

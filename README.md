@@ -149,6 +149,9 @@ that uses the alternative, presumably faster, implementation. Alternatively, you
 content, if you do not need the comparison, to save time within the workshop. Better suited if, for example, you
 want to minimize allocations while comparison is often required for accurately judging the execution time.
 
+Hints are base64 encoded and ordered from top to bottom. If you need them, just decode one at a time them with the decoder of your choice or in VS's C# interactive with
+`Encoding.UTF8.GetString(Convert.FromBase64String("..."))`. 
+
 Running a benchmark is simple:
 - Select the *Benchmarks* Project as startup
 - Select *Release*-Configuration
@@ -166,9 +169,11 @@ within the sample app to get acceptable performance.
 **Try to match the results of profiling output with one of these benchmarks.**
 
 ### Intermediate
-Benchmarks puzzles that solve common but less impacting (for this specific scenario) issues. 
+Benchmarks puzzles that solve common but less impacting (for this specific scenario) issues. Some of them might not be
+applicable to the sample application.
 
 ### Advanced
 Benchmarks puzzles that are much more niche and usually reserved for the absolute hot paths in extremely
-performance critical applications. Such optimizations might require more compromises with readability,
-and hence, should be used sparingly and deliberately. However, they are nice to play with!
+performance critical applications and not necessarily applicable to the sample app. 
+Some optimizations might require more compromises with readability, and hence, should be used sparingly and deliberately. 
+However, they are nice to play with!

@@ -3,33 +3,30 @@ using BenchmarkDotNet.Diagnosers;
 
 namespace Akade.Workshops.Performance.Benchmarks.Advanced;
 
-
 /// <summary>
-/// Multidimensional arrays are slower than jagged ones
-/// Jagged ones are slower than a single continous bit
-/// Continous memory access is faster than random (less cache misses)
+/// There are lot of things going on in this benchmark. Can you make it faster & explain why?
+/// You are explicitly allowed to change the way the data is stored.
+/// Hints:
+/// - Q29udGlub3VzIG1lbW9yeSBhY2Nlc3MgaXMgZmFzdGVyIHRoYW4gcmFuZG9tIChsZXNzIGNhY2hlIG1pc3Nlcyk=
+/// - TXVsdGlkaW1lbnNpb25hbCBhcnJheXMgYXJlIHNsb3dlciB0aGFuIGphZ2dlZCBvbmVzLCBhcyB0aGV5IGFsbG93IG1vcmUgdGhpbmdzLiBGb3IgZXhhbXBsZSwgdGhleSBhbGxvdyBuZWdhdGl2ZSBpbmRpY2VzIQ==
+/// - SmFnZ2VkIGFycmF5cyBhcmUgc2xvd2VyIHRoYW4gYSBzaW5nbGUgY29udGlub3VzIGFycmF5
 /// </summary>
 [HardwareCounters(HardwareCounter.CacheMisses)]
 [FastJob]
 public class CpuCache
 {
     private const int N = 1000;
-    public int[][] _values;
-    public int[,] _values2;
-    public int[] _values3;
+    public int[,] _values;
 
     public CpuCache()
     {
         Random r = new(42);
-        _values = new int[N][];
-        _values2 = new int[N, N];
-        _values3 = new int[N * N];
+        _values = new int[N, N];
         for (int x = 0; x < N; x++)
         {
-            _values[x] = new int[N];
             for (int y = 0; y < N; y++)
             {
-                _values3[(x * N) + y] = _values[x][y] = _values2[x, y] = r.Next();
+                _values[x, y] = r.Next();
 
             }
         }
@@ -44,91 +41,10 @@ public class CpuCache
         {
             for (int y = 0; y < N; y++)
             {
-                sum += _values[x][y];
+                sum += _values[y, x];
             }
         }
 
         return sum;
     }
-
-    [Benchmark]
-    public long Sum2()
-    {
-        long sum = 0;
-
-        for (int x = 0; x < N; x++)
-        {
-            for (int y = 0; y < N; y++)
-            {
-                sum += _values[y][x];
-            }
-        }
-
-        return sum;
-    }
-
-    [Benchmark]
-    public long Sum3()
-    {
-        long sum = 0;
-
-        for (int x = 0; x < N; x++)
-        {
-            for (int y = 0; y < N; y++)
-            {
-                sum += _values2[x, y];
-            }
-        }
-
-        return sum;
-    }
-
-    [Benchmark]
-    public long Sum4()
-    {
-        long sum = 0;
-
-        for (int x = 0; x < N; x++)
-        {
-            for (int y = 0; y < N; y++)
-            {
-                sum += _values2[y, x];
-            }
-        }
-
-        return sum;
-    }
-
-    [Benchmark]
-    public long Sum5()
-    {
-        long sum = 0;
-
-        for (int x = 0; x < N; x++)
-        {
-            for (int y = 0; y < N; y++)
-            {
-                sum += _values3[x * N + y];
-            }
-        }
-
-        return sum;
-    }
-
-    [Benchmark]
-    public long Sum6()
-    {
-        long sum = 0;
-
-        for (int x = 0; x < N; x++)
-        {
-            for (int y = 0; y < N; y++)
-            {
-                sum += _values3[y * N + x];
-            }
-        }
-
-        return sum;
-    }
-
 }

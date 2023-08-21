@@ -9,7 +9,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Required;
 
 /// <summary>
 /// This benchmark shows code that uses exceptions as control flow. 
-/// Can you make it faster? What can you conclude about the costs of exception handling?
+/// Can you make it faster? Can you explain what is going on?
 /// - Hint: Are there other patterns in C# for parsing? 
 /// </summary>
 [FastJob]

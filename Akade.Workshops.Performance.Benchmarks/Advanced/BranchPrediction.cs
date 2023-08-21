@@ -4,6 +4,13 @@ using BenchmarkDotNet.Diagnostics.Windows.Configs;
 
 namespace Akade.Workshops.Performance.Benchmarks.Advanced;
 
+/// <summary>
+/// The following benchmark allows you to think about superscalar execution. Can you make it faster?
+/// Hints:
+/// - TW9kZXJuIENQVXMgc3BlY3VsYXRpdmx5IGV4ZWN1dGUgYnJhbmNoZWQgY29kZSwgaWYgdGhleSBnZXQgaXQgd3JvbmcsIGl0IGlzIGV4cGVuc2l2ZS4=
+/// - VHJ5IHRvIHJld3JpdGUgbG9vcCB3aXRob3V0IHRoZSBpZiBpbiBpdA==
+/// - Qml0IG9wZXJhdGlvbnMgc3VjaCBhcyBzaGlmdGluZyBhbmQgYWRkaW5nIHRvIHRoZSByZXNjdWU=
+/// </summary>
 [HardwareCounters(HardwareCounter.BranchMispredictions, HardwareCounter.BranchInstructions)]
 [FastJob]
 public class BranchPrediction
@@ -33,18 +40,6 @@ public class BranchPrediction
             }
         }
 
-        return sum;
-    }
-
-    [Benchmark]
-    public int Branchless()
-    {
-        int sum = 0;
-        for (int i = 0; i < N; i++)
-        {
-            int t = (data[i] - 128) >> 31;
-            sum += ~t & data[i];
-        }
         return sum;
     }
 }

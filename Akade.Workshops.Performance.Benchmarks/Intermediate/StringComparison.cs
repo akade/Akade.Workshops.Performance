@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 
 /// <summary>
-/// There are different ways to compare text, culture dependent, lower case. Compare them and see which is the fastest
+/// There are different ways to compare text, culture dependent, lower case. Compare them and see which is the fastest & most memory efficient ones.
 /// </summary>
 [FastJob]
 [MemoryDiagnoser]
@@ -19,12 +19,6 @@ public class StringComparisonBenchmarks
     public bool AreEqual()
     {
         return "AAAAaaBBBCCCc".ToLower() == "AAAAaaBBBCCCc".ToLower();
-    }
-
-    [Benchmark]
-    public bool AreEqualInvariant()
-    {
-        return "AAAAaaBBBCCCc".ToLowerInvariant() == "AAAAaaBBBCCCc".ToLowerInvariant();
     }
 
 }
