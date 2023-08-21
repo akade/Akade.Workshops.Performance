@@ -9,16 +9,14 @@ namespace Akade.Workshops.Performance.Benchmarks.Advanced;
 /// <summary>
 /// A simple task or is it? Make the summation as fast as you can!
 /// Hints:
-/// - There are differnt kind of loops, which is the fastest?
-/// - Can Modern CPUs do more than scalar operations?
-/// - 
+/// - VGhlcmUgYXJlIGRpZmZlcmVudCBraW5kIG9mIGxvb3BzLCB3aGljaCBpcyB0aGUgZmFzdGVzdD8=
+/// - VGFrZSBhIGxvb2sgYXQgdmVjdG9yaXplZCAoU0lNRCkgb3BlcmF0aW9ucyBpbiBTeXN0ZW0uTnVtZXJpY3MuIFlvdSB3aWxsIHByb2JhYmx5IG5lZWQgdG8gZ29vZ2xlIGhvdyB0byBkbyBpdC4=
 /// </summary>
 [FastJob]
 [DisassemblyDiagnoser]
-public class Intriniscs
+public class Intrinsics
 {
     private readonly int[] array = Enumerable.Range(0, 2560).ToArray();
-
 
     [Benchmark]
     public int SumForeach()

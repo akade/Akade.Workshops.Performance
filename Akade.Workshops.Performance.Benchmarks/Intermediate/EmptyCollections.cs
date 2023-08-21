@@ -1,4 +1,6 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿// Ignore Spelling: Impl
+
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 
 namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
@@ -8,7 +10,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 /// It is also an example on how BenchmarkDotNet currently recommends to evaluate IEnumerables and
 /// on how the <see cref="MemoryDiagnoserAttribute"/> can be used to track allocations.
 /// 
-/// Can you explain the difference in performance?
+/// Can you explain the difference in performance and memory allocation?
 /// - Note that all methods are equivalent from a caller's perspective.
 /// </summary>
 [FastJob]

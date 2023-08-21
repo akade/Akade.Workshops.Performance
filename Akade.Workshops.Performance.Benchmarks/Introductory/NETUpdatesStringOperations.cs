@@ -15,24 +15,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Introductory;
 /// </summary>
 [FastJob(runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
 [FastJob(runtimeMoniker: RuntimeMoniker.Net70)]
-public class A_NETUpdates_Linq
-{
-    [GlobalSetup]
-    public void Setup() => _source = Enumerable.Range(1, Length).Select(x => (double)x).ToArray();
-
-    [Params(4, 1024)]
-    public int Length { get; set; }
-
-    private IEnumerable<double> _source = null!;
-
-
-    [Benchmark]
-    public double Average() => _source.Average();
-}
-
-[FastJob(runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
-[FastJob(runtimeMoniker: RuntimeMoniker.Net70)]
-public class A_NETUpdates_StringOperations
+public class NETUpdatesStringOperations
 {
     private readonly string _value = "https://dot.net";
 

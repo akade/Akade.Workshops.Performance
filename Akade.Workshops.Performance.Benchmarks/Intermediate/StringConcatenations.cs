@@ -4,12 +4,19 @@ using System.Text;
 
 namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 
+/// <summary>
+/// This benchmark is a classic. Can you make it faster? And reduce it's memory footprint?
+/// 
+/// Hints:
+/// - RWFjaCBzdHJpbmcgY29uY2F0ZW5hdGlvbiAoKykgY3JlYXRlcyBhIGZyZXNobHkgYWxsb2NhdGVkIHN0cmluZw==
+/// - U3RyaW5nQnVpbGRlcg==
+/// - Q2FuIHlvdSByZXVzZSB0aGUgU3RyaW5nQnVpbGRlcj8=
+/// </summary>
 [FastJob]
 [MemoryDiagnoser]
 public class StringConcatenations
 {
     private readonly string[] _strings = Enumerable.Range(0, 100).Select(x => x.ToString()).ToArray();
-    private readonly ObjectPool<StringBuilder> _stringBuilderPool = new DefaultObjectPoolProvider().CreateStringBuilderPool();
 
     [Benchmark]
     public string AddOperator()
@@ -20,35 +27,5 @@ public class StringConcatenations
             result += s;
         }
         return result;
-    }
-
-    [Benchmark]
-    public string StringBuilder()
-    {
-        StringBuilder builder = new();
-        foreach (string s in _strings)
-        {
-            builder.Append(s);
-        }
-        return builder.ToString();
-    }
-
-    [Benchmark]
-    public string PooledStringBuilder()
-    {
-        StringBuilder builder = _stringBuilderPool.Get();
-
-        try
-        {
-            foreach (string s in _strings)
-            {
-                builder.Append(s);
-            }
-            return builder.ToString();
-        }
-        finally
-        {
-            _stringBuilderPool.Return(builder);
-        }
     }
 }

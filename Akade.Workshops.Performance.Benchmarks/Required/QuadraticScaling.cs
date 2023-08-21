@@ -7,14 +7,19 @@ namespace Akade.Workshops.Performance.Benchmarks.Required;
 /// This benchmark demonstrates how the Big-O-Notation matters and small number
 /// of data entries (as commonly found during development) can be very deceiving
 /// Can you improve on it?
-/// - Do not change GetFirstList or GetSecondList, they'd represent an api call or similar
-/// - Do not calculate the result, it should work with arbitrary data
-/// - Hint 1: SXMgdGhlcmUgYXdheSB0byBwcmVwYXJlIGZhc3RlciBsb29rdXAgb24gdGhlIGRhdGEgcmV0dXJuZWQgYnkgR2V0U2Vjb25kTGlzdCgpPw==
-/// - Hint 2: Q2hlY2sgYWxsIHRoZSBjb2xsZWN0aW9ucyBhdmFpbGFibGUgaW4gU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuIE9uZSBvZiB0aGVtIGlzIGEgc29sdXRpb24gZm9yIHRoZSBwcm9ibGVtLg==
+/// Hints:
+/// - Note: Do not change GetFirstList or GetSecondList, they'd represent an api call or similar
+/// - Note: Do not calculate the result, it should work with arbitrary data
+/// - SXMgdGhlcmUgYXdheSB0byBwcmVwYXJlIGZhc3RlciBsb29rdXAgb24gdGhlIGRhdGEgcmV0dXJuZWQgYnkgR2V0U2Vjb25kTGlzdCgpPw==
+/// - Q2hlY2sgYWxsIHRoZSBjb2xsZWN0aW9ucyBhdmFpbGFibGUgaW4gU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuIE9uZSBvZiB0aGVtIGlzIGEgc29sdXRpb24gZm9yIHRoZSBwcm9ibGVtLg==
+/// - SGFzaFNldCBhbGxvd3MgTygxKSBjb250YWlucywgc3RvcmUgdGhlIHJlc3VsdCBvZiBHZXRTZWNvbmRMaXN0IGluIG9uZQ==
 /// </summary>
 [FastJob]
 public class QuadraticScaling
 {
+    /// <summary>
+    /// Params instruct BenchmarkDotNet to run the Benchmark with different values.
+    /// </summary>
     [Params(5, 100, 1000)]
     public int NumberOfElements { get; set; }
 
