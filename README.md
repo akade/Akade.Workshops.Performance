@@ -29,55 +29,12 @@ can use to optimize the app. Additionally, there are more advanced benchmarks,
 that cover interesting topics if you are more experienced with performance
 related coding, however, they are less relevant to the application and more niche.
 
-*The first step will be to include metrics, then you will most likely
+*The first step will be to to make the app runnable. You will most likely
 switch between profiling to find out slow parts of the code and "solving"
-benchmarks.*
+benchmarks to get ideas about how to make the code faster.*
+After you are happy with the application performance, you can include metrics.
 
-## 1. Metrics
-
-In order to be aware of your apps performance characteristics, it is advisable to
-continuously track performance. This can either be done with regularly running
-benchmarks or more common, with metrics. Benchmarks, while important, are often 
-synthetic while Metrics can measure real-world actions.
-
-### 1.1 Add metrics
-
-Possible places:
-- `SourceDataLoader.LoadAndSaveAsync(...)`
-- `HistoricalWeatherController`-Methods
-- ...
-
-Note: Don't try to do full instrumentation (i.e. every method), one or two are enough for the workshop. 
-And also in practice, there is usually not much value in instrumenting everything.
-
-You can create a new meter as follows. Histograms are usually used for timings:
-
-```csharp
-static Meter s_meter = new Meter("SampleSourceName", "1.0.0");
-static Histogram<double> s_orderProcessingTimeSeconds =
-    s_meter.CreateHistogram<double>("order-processing-time");
-```
-
-Recording a timing then works like this:
-
-```csharp
-s_orderProcessingTimeSeconds.Record(elapsedSeconds);
-
-// However, for the workshop, there already is a helper that includes the time measuring itself:
-using(TimingHelper.RecordTiming(s_orderProcessingTimeSeconds))
-{
-    // do work
-}
-```
-
-### 1.2 Observe
-
-For observing, usually tools like Prometheus and Grafana are used. For the limited amount of time,
-the workshop includes `ToCsvMeterListener`, which listens to all measurements and writes
-it to disk. 
-Monitoring can be done using (PS): `Get-Content -Path counters.csv -Wait" or "tail counters.csv`.
-
-## 2. Profiling
+## 1. Profiling
 
 The following guide is for the VS Profiler (Debug > Performance Profiler, ALT + F2).
 
@@ -112,7 +69,7 @@ all methods that are called. *Self* is without called methods. Double click on t
 
 > Hint: If no source code get's displayed, try the following: Right click on any function -> *Load All Symbols*
 
-## 3. Benchmarking
+## 2. Benchmarking
 
 Benchmarking is used to find out what code is truly faster and is also helpful in figuring out some more advanced
 characteristics of your code such as memory allocations, inlining or even the jitted assembly code.
@@ -177,3 +134,47 @@ Benchmarks puzzles that are much more niche and usually reserved for the absolut
 performance critical applications and not necessarily applicable to the sample app. 
 Some optimizations might require more compromises with readability, and hence, should be used sparingly and deliberately. 
 However, they are nice to play with!
+
+## 3. Metrics
+
+In order to be aware of your apps performance characteristics, it is advisable to
+continuously track performance. This can either be done with regularly running
+benchmarks or more common, with metrics. Benchmarks, while important, are often 
+synthetic while Metrics can measure real-world actions.
+
+### 3.1 Add metrics
+
+Possible places:
+- `SourceDataLoader.LoadAndSaveAsync(...)`
+- `HistoricalWeatherController`-Methods
+- ...
+
+Note: Don't try to do full instrumentation (i.e. every method), one or two are enough for the workshop. 
+And also in practice, there is usually not much value in instrumenting everything.
+
+You can create a new meter as follows. Histograms are usually used for timings:
+
+```csharp
+static Meter s_meter = new Meter("SampleSourceName", "1.0.0");
+static Histogram<double> s_orderProcessingTimeSeconds =
+    s_meter.CreateHistogram<double>("order-processing-time");
+```
+
+Recording a timing then works like this:
+
+```csharp
+s_orderProcessingTimeSeconds.Record(elapsedSeconds);
+
+// However, for the workshop, there already is a helper that includes the time measuring itself:
+using(TimingHelper.RecordTiming(s_orderProcessingTimeSeconds))
+{
+    // do work
+}
+```
+
+### 3.2 Observe
+
+For observing, usually tools like Prometheus and Grafana are used. For the limited amount of time,
+the workshop includes `ToCsvMeterListener`, which listens to all measurements and writes
+it to disk. 
+Monitoring can be done using (PS): `Get-Content -Path counters.csv -Wait" or "tail counters.csv`.
