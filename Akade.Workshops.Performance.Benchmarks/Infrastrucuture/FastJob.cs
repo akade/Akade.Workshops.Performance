@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Toolchains.InProcess.Emit;
 
 namespace Akade.Workshops.Performance.Benchmarks.Infrastrucuture;
 
@@ -15,7 +16,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Infrastrucuture;
 public class FastJobAttribute : JobConfigBaseAttribute
 {
 
-    public FastJobAttribute(RuntimeMoniker runtimeMoniker = RuntimeMoniker.Net70, string? id = null, bool baseline = false, int unrollFactor = 1024, int maxIterationCount = 5, string nugetPackages = "")
+    public FastJobAttribute(RuntimeMoniker runtimeMoniker = RuntimeMoniker.HostProcess, string? id = null, bool baseline = false, int unrollFactor = 1024, int maxIterationCount = 5, string nugetPackages = "")
        : base(CreateJob(runtimeMoniker, id, baseline, unrollFactor, maxIterationCount, ParseNugetPackages(nugetPackages)))
     {
 
@@ -53,6 +54,11 @@ public class FastJobAttribute : JobConfigBaseAttribute
             .WithBaseline(baseline)
             .WithUnrollFactor(unrollFactor);
 
+        if(runtimeMoniker == RuntimeMoniker.HostProcess)
+        {
+            job = job.WithToolchain(InProcessEmitToolchain.Instance);
+        }
+
         if (unrollFactor == 1)
         {
             job = job.WithInvocationCount(1);
@@ -72,6 +78,7 @@ public class FastJobAttribute : JobConfigBaseAttribute
         {
             RuntimeMoniker.Net70 => CoreRuntime.Core70,
             RuntimeMoniker.Net60 => CoreRuntime.Core60,
+            RuntimeMoniker.HostProcess => CoreRuntime.Core70,
             _ => throw new InvalidOperationException("Only Net 6 & 7 supported, use SimpleJob instead of FastJob for others")
         };
     }
