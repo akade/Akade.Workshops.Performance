@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Akade.Workshops.Performance/historicaldata.db
+/Akade.Workshops.Performance/historicaldata.db-shm
+/Akade.Workshops.Performance/historicaldata.db-wal
+/Akade.Workshops.Performance/counters.csv
