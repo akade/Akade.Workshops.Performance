@@ -10,9 +10,9 @@ namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 /// *was* the defacto standard for a long time. Are other serializers faster?
 /// Hints
 /// - U3lzdGVtLlRleHQuSnNvbg==
-/// - WW91IGNhbiwgaW4gZmFjdCwgbWFrZSBpdCBldmVuIGEgYml0IGZhc3RlciB3aXRob3V0IHVzaW5nIGFuIGV4dGVybmFsIGxpYnJhcnkuIFRha2UgYSBsb29rIGF0IHNvdXJjZSBnZW5lcmF0aW9uIGFuZCBqc29uLg==
 /// </summary>
 [FastJob]
+[MemoryDiagnoser]
 public class Serialization
 {
     private readonly DataEntry[] entries = Enumerable.Range(0, 100)
