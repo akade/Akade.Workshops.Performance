@@ -19,7 +19,7 @@ while (true)
         string fromString = AnsiConsole.Prompt(new TextPrompt<string>("From date:").Validate(val => DateOnly.TryParse(val, out _))
                                                                                          .ValidationErrorMessage("[red]That's not a valid date[/]"));
 
-        string toString = AnsiConsole.Prompt(new TextPrompt<string>("From date:").Validate(val => DateOnly.TryParse(val, out _))
+        string toString = AnsiConsole.Prompt(new TextPrompt<string>("To date:").Validate(val => DateOnly.TryParse(val, out _))
                                                                                  .ValidationErrorMessage("[red]That's not a valid date[/]"));
 
         DateOnly from = DateOnly.Parse(fromString);

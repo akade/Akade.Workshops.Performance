@@ -52,7 +52,7 @@ public class HistoricalWeatherController : ControllerBase
             station,
             dateOnly,
             Precipitation: data.FirstOrDefault(data => data.ElementType == ElementType.PRCP)?.DataValue,
-            Snow: data.FirstOrDefault(data => data.ElementType == ElementType.SNOW)?.DataValue,
+            Snow: data.FirstOrDefault(data => data.ElementType == ElementType.SNWD)?.DataValue,
             TMax: data.FirstOrDefault(data => data.ElementType == ElementType.TMAX)?.DataValue,
             TMin: data.FirstOrDefault(data => data.ElementType == ElementType.TMIN)?.DataValue,
             TAvg: data.FirstOrDefault(data => data.ElementType == ElementType.TAVG)?.DataValue));

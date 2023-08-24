@@ -6,7 +6,7 @@ using BenchmarkDotNet.Running;
 BenchmarkSwitcher.FromTypes(new[] { typeof(NETUpdatesLinq), typeof(NETUpdatesStringOperations), typeof(EFCoreUpdatesInsertion), typeof(EFCoreUpdatesReading) }).Run(args);
 
 // "Required"
-// BenchmarkSwitcher.FromTypes(new[] { typeof(EFCoreQueries), typeof(ExceptionsAsControlFlow), typeof(LazyLinqEnumeration), typeof(QuadraticScaling) }).Run(args);
+// BenchmarkSwitcher.FromTypes(new[] { typeof(Bulk), typeof(EFCoreQueries), typeof(ExceptionsAsControlFlow), typeof(LazyLinqEnumeration), typeof(QuadraticScaling) }).Run(args);
 
 // "Intermediate"
 // BenchmarkSwitcher.FromTypes(new[] { typeof(EFCoreTracking), typeof(EmptyCollections), typeof(EnumParsing), typeof(PrematureOptimization), typeof(Serialization), typeof(StringComparisonBenchmarks), typeof(StringConcatenations) }).Run(args);

@@ -7,12 +7,14 @@ namespace Akade.Workshops.Performance.Benchmarks.Advanced;
 /// There are lot of things going on in this benchmark. Can you make it faster & explain why?
 /// You are explicitly allowed to change the way the data is stored.
 /// Hints:
+/// Note: You need administration rights to execute this benchmark
+/// Note: It's not the intent, that you write intrinsics-based code in this benchmark.
 /// - Q29udGlub3VzIG1lbW9yeSBhY2Nlc3MgaXMgZmFzdGVyIHRoYW4gcmFuZG9tIChsZXNzIGNhY2hlIG1pc3Nlcyk=
 /// - TXVsdGlkaW1lbnNpb25hbCBhcnJheXMgYXJlIHNsb3dlciB0aGFuIGphZ2dlZCBvbmVzLCBhcyB0aGV5IGFsbG93IG1vcmUgdGhpbmdzLiBGb3IgZXhhbXBsZSwgdGhleSBhbGxvdyBuZWdhdGl2ZSBpbmRpY2VzIQ==
 /// - SmFnZ2VkIGFycmF5cyBhcmUgc2xvd2VyIHRoYW4gYSBzaW5nbGUgY29udGlub3VzIGFycmF5
 /// </summary>
 [HardwareCounters(HardwareCounter.CacheMisses)]
-[FastJob]
+[FastJob(BenchmarkDotNet.Jobs.RuntimeMoniker.Net70)]
 public class CpuCache
 {
     private const int N = 1000;
