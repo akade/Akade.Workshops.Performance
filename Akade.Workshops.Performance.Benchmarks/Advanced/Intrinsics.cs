@@ -12,7 +12,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Advanced;
 /// - VGhlcmUgYXJlIGRpZmZlcmVudCBraW5kIG9mIGxvb3BzLCB3aGljaCBpcyB0aGUgZmFzdGVzdD8=
 /// - VGFrZSBhIGxvb2sgYXQgdmVjdG9yaXplZCAoU0lNRCkgb3BlcmF0aW9ucyBpbiBTeXN0ZW0uTnVtZXJpY3MuIFlvdSB3aWxsIHByb2JhYmx5IG5lZWQgdG8gZ29vZ2xlIGhvdyB0byBkbyBpdC4=
 /// </summary>
-[FastJob]
+[FastJob(BenchmarkDotNet.Jobs.RuntimeMoniker.Net70)]
 [DisassemblyDiagnoser]
 public class Intrinsics
 {

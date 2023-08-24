@@ -13,7 +13,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Advanced;
 /// - VGhlIEpJVCBlbGltaW5hdGVzIHVucmVhY2hhYmxlIGNvZGUgKHZhcmlhbnQgMSkgLyB0aGVyZSBpcyBhIG5ldyBmZWF0dXJlIGluIC5ORVQgNyB0aGF0IG1heSBoZWxwIHlvdSAodmFyaWFudCAyKQ==
 /// - UmVtZW1iZXIsIHRoZSBlbnVtZXJhdG9yIGlzIGFsc28gYWxsb2NhdGVkIGZvciBJRW51bWVyYWJsZTw+LiBDYW4geW91IGF2b2lkIHRoYXQ/IChZb3Ugc3RpbGwgY2FuIGRvIGEgZm9yZWFjaCk=
 /// </summary>
-[FastJob]
+[FastJob(BenchmarkDotNet.Jobs.RuntimeMoniker.Net70)]
 [MemoryDiagnoser]
 [DisassemblyDiagnoser]
 public class BoxingAndSpecialization

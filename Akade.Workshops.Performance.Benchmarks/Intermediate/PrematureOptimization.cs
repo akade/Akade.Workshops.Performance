@@ -12,7 +12,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Intermediate;
 /// - VGhlIEppdCBjYW4gb2Z0ZW4gb3B0aW1pemUgdGhlIGJvdW5kcyBjaGVja2luZyBhd2F5LCB3aHkgbm90IGluIHRoYXQgY2FzZT8=
 /// - SXQgKGN1cnJlbnRseSkgaGFzIG5vIGtub3dsZWRnZSBhYm91dCB3aGV0aGVyIHRoZSBjb25zdGFudCBtYXRjaGVzIF92YWx1ZXMuTGVuZ3Ro
 /// </summary>
-[FastJob]
+[FastJob(BenchmarkDotNet.Jobs.RuntimeMoniker.Net70)]
 [DisassemblyDiagnoser]
 public class PrematureOptimization
 {
