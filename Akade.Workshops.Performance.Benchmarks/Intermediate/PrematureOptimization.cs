@@ -20,15 +20,15 @@ public class PrematureOptimization
     readonly int[] _values = Enumerable.Range(1, count).ToArray();
 
     [Benchmark]
-    public int Sum()
+    public int Sum() => SumImpl(_values);
+
+    public static int SumImpl(int[] values)
     {
         int sum = 0;
         for(int i = 0; i < count; i++)
         {
-            sum += _values[i];
+            sum += values[i];
         }
         return sum;
     }
-
-    
 }

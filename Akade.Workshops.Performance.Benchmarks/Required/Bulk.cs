@@ -4,7 +4,7 @@ namespace Akade.Workshops.Performance.Benchmarks.Required;
 
 /// <summary>
 /// This benchmark demonstrate how your interface may affect performance
-/// Can you make it faster? You are allows to change the interface of GET but you have to include the Network latency
+/// Can you make it faster? You are allowed to change the interface & body of GET but you have to execute the Network latency
 /// Hints:
 /// - Q2FuIHlvdSBwYXkgdGhlIG5ldHdvcmsgbGF0ZW5jeSBvbmx5IG9uY2U/
 /// - TW9kaWZ5IGdldCB0byB0YWtlIGEgbGlzdCBvZiBpZHMgYW5kIHJldHVybiBhbGwgcmVzdWx0cyBpbiBvbmUgbWV0aG9kIGNhbGw=
